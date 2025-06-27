@@ -85,6 +85,13 @@ jobs:
       - name: Install sshpass
         run: sudo apt-get update && sudo apt-get install -y sshpass
 
+      - name: Create target directory on VPS
+        run: |
+          export VPS_IP="195.110.35.221"
+          export VPS_USER="root"
+          export VPS_PASS="F2v9V6m2h8o6K7K"
+          sshpass -p "$VPS_PASS" ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_IP 'mkdir -p /home/ewen/conversion-monetaire'
+
       - name: Copy project to VPS
         run: |
           export VPS_IP="195.110.35.221"
